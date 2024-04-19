@@ -1,0 +1,81 @@
+@mixin setColor($color) {
+  fill: currentColor;
+  color: $color;
+}
+
+.icon {
+  &.momo {
+    height: 25px;
+    padding-left: 20px;
+  }
+  &.reset {
+    height: 30px;
+    @include setColor(#fff);
+  }
+  &.language,
+  &.setting {
+    height: 35px;
+    @include setColor(#fff);
+    cursor: pointer;
+  }
+  &.close,
+  &.download,
+  &.info,
+  &.list {
+    height: 35px;
+  }
+  &.message {
+    height: 30px;
+  }
+  &.profile,
+  &.heart {
+    height: 30px;
+    @include setColor(#fff);
+    width: 75%;
+    height: 75%;
+    cursor: pointer;
+  }
+  &.bell,
+  &.choice {
+    height: 30px;
+    @include setColor(#fff);
+    width: 70%;
+    height: 70%;
+    cursor: pointer;
+  }
+  &.image,
+  &.send {
+    @include setColor(rgb(189, 189, 189));
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+  &.search-group__icon {
+    height: 30px;
+    @include setColor(#9e9ea7);
+    margin: 10px;
+  }
+  &.list-item__avatar--multi {
+    border-radius: 50%;
+    @include setColor(white);
+    background: $grey;
+  }
+  &.play {
+    height: 50px;
+    @include setColor($grey);
+    cursor: pointer;
+    filter: drop-shadow(rgba(45, 35, 66, 0.15) 0 2px 4px);
+    position: relative;
+    left: 60px;
+    top: 110px;
+    z-index: 10;
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+}
+
+img:active {
+  transform: scale(0.95);
+}
