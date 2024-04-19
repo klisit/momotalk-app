@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import { internalIpV4 } from 'internal-ip';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import topLevelAwait from 'vite-plugin-top-level-await';
+import vuetify from 'vite-plugin-vuetify';
 
 const mobile = !!/android|ios/.exec(process.env.TAURI_ENV_PLATFORM);
 
@@ -12,13 +13,13 @@ export default defineConfig(async () => ({
 	plugins: [
 		vue(),
 		vueJsx(),
-		,
 		topLevelAwait({
 			// The export name of top-level await promise for each chunk module
 			promiseExportName: '__tla',
 			// The function to generate import names of top-level await promise in each chunk module
 			promiseImportName: (i) => `__tla_${i}`,
 		}),
+		vuetify()
 	],
 	resolve: {
 		alias: {
