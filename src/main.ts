@@ -10,7 +10,16 @@ import VMdPreview from '@/markdown/markdown'
 import VueLazyLoad from 'vue3-lazyload'
 import DefaultLayout from './layouts/defaultLayout.vue'
 
-const vuetify = createVuetify({})
+const vuetify = createVuetify({theme: {
+  themes: {
+    light: {
+      dark: false,
+      colors: {
+        primary:'#FC96AB', // #E53935
+      }
+    },
+  },
+},})
 
 const app = createApp(App)
 app.component('default-layout', DefaultLayout)

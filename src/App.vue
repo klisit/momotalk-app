@@ -13,4 +13,12 @@ let layoutName = computed(() => route.meta.layout + '-layout')
   </v-app>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@font-face {
+  font-family: 'Blueaka';
+  src: url('./fonts/Blueaka.woff2');
+}
+* {
+  font-family: 'Blueaka', sans-serif;
+}
+</style>
