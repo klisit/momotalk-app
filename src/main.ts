@@ -9,6 +9,7 @@ import { createVuetify } from 'vuetify'
 import VMdPreview from '@/markdown/markdown'
 import VueLazyLoad from 'vue3-lazyload'
 import DefaultLayout from './layouts/defaultLayout.vue'
+import EmptyLayout from './layouts/emptyLayout.vue'
 
 const vuetify = createVuetify({theme: {
   themes: {
@@ -23,6 +24,7 @@ const vuetify = createVuetify({theme: {
 
 const app = createApp(App)
 app.component('default-layout', DefaultLayout)
+app.component('empty-layout', EmptyLayout)
 
 app.use(VueLazyLoad, {})
 app.use(router)

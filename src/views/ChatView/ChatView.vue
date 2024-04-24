@@ -1,5 +1,5 @@
 <template>
-  <main class="talk-wrapper">
+  <div class="talk-wrapper">
     <!-- 聊天主界面 -->
     <div class="talk-list" id="talkList">
       <chat-draggable :tasks="talkHistory.talkHistory" />
@@ -127,7 +127,7 @@
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -48,8 +48,8 @@ function handleNav(link: string) {
 <style scoped lang="scss">
 .default-layout {
   &-icon {
-    width: 28px;
-    height: 28px;
+    width: 24px;
+    height: 24px;
     margin-left: 10px;
   }
   :deep(.v-toolbar-title__placeholder) {

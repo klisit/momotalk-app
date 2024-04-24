@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(var(--view-height) - $header-height - $chatfooter-height);
+  height: calc(100vh - 120px);
   background-color: var(--theme_bg_color);
   @include hide-scrollbar;
   overflow-x: hidden;
