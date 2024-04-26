@@ -36,11 +36,25 @@
   }
 }
 
+.student-list__button {
+  @include center;
+  background: white;
+  border-radius: 5px;
+  box-shadow: rgba(45, 35, 66, 0.2) 0 2px 4px;
+  margin: 15px 20px;
+  width: 20%;
+  height: 40px;
+  @include font-regular(15px);
+  cursor: pointer;
+  transform: skew(-15deg);
+  overflow: hidden;
+}
+
 #listbody {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100vh - var(--v-layout-top) - var(--v-layout-bottom) - 62px);
+  height: calc(100vh - var(--v-layout-top) - var(--v-layout-bottom) - 72px);
   // @include hide-scrollbar;
   overflow-y: scroll;
   // &::-webkit-scrollbar {
