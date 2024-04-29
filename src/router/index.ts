@@ -8,14 +8,6 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'info',
-      meta: {
-        layout: 'default'
-      },
-      component: Info
-    },
-    {
       path: '/chat',
       name: 'chat-list',
       meta: {
@@ -38,6 +30,14 @@ const router = createRouter({
         layout: 'default'
       },
       component: User
+    },
+    {
+      path: '/info/:id',
+      name: 'info',
+      meta: {
+        layout: 'default'
+      },
+      component: Info
     },
     {
       path: '/help',

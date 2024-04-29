@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { studentInfo } from './interface'
 import { Traditionalized } from './tw_cn'
+import { studentsDb } from '../storeUtils/students'
 
 function proxy(url: string): string
 function proxy(url: string[]): string[]
@@ -104,8 +105,12 @@ const getLocal = async (lng: string) => {
 }
 
 const getStudents = async (lng: string) => {
+  if (studentsDb[lng] &&studentsDb[lng].length > 0 ) {
+    return studentsDb[lng]
+  }
   const data1: studentInfo[] = await getSchale(lng)
   const data2: studentInfo[] = await getLocal(lng)
+  studentsDb[lng] = [data1, data2]
   return [data1, data2]
 }
 

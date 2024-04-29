@@ -5,6 +5,7 @@ import { getStudents, getSchaleSchoolIcon } from '../../assets/utils/request'
 import { baseStudent, studentInfo } from '@/assets/utils/interface'
 import { ref, onMounted, watch } from 'vue'
 import { store } from '@/assets/storeUtils/store'
+import { studentsDb } from '@/assets/storeUtils/students'
 import { talkHistory } from '@/assets/storeUtils/talkHistory'
 import { search } from '@/assets/utils/search'
 const database: any = ref([])
@@ -44,6 +45,7 @@ const studentSelected = ref<studentInfo | null>(null)
 const student = ref<baseStudent | null>(null)
 const selectStudent = (item: studentInfo) => {
   studentSelected.value = item
+  studentsDb.currentInfo = item
   student.value = {
     Id: studentSelected.value.Id,
     Name: studentSelected.value.Name,
@@ -137,12 +139,21 @@ document.onkeyup = (e) => {
         :class="{ active: item === studentSelected }"
         @click="selectStudent(item)"
       >
+
+        <!-- 头像部分 -->
         <div class="list-item__avatar" @click.stop="" @click="showAvatars(item)">
           <img v-lazy="item.Avatars[item.cnt]" />
-          <button :class="true ? 'minus' : 'add'" v-if="item.Avatars.length > 2"></button>
+          <button
+            :class="item === studentShowAvatars ? 'minus' : 'add'"
+            v-if="item.Avatars.length > 2"
+          > </button>
         </div>
-        <span class="list-item__name">{{ item.Name }}</span>
-        <span class="list-item__bio">{{ item.Bio }}</span>
+
+        <!-- 名称信息 -->
+        <router-link class="list-item__name" :to="`/info/${item.Id}`">{{ item.Name }}</router-link>
+        <span class="list-item__bio" :to="`/info/${item.Id}`">{{ item.Bio }}</span>
+
+        <!-- 所属学院 -->
         <div
           class="list-item__mark"
           v-if="item.School"
@@ -151,6 +162,7 @@ document.onkeyup = (e) => {
         >
           <img v-lazy="getSchaleSchoolIcon(item.School)" />
         </div>
+        <!-- 头像下拉列表 -->
         <div
           class="list-item__avatars"
           @click.stop=""
