@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { store } from '@/assets/storeUtils/store'
-import { play } from '@/assets/chatUtils/play'
 import { useRoute, useRouter } from 'vue-router'
 import { ref } from 'vue'
 
@@ -9,20 +8,17 @@ const router = useRouter()
 const storyLng = ref<string>('MessageJP')
 
 const playMomotalk = async (confirm: boolean) => {
-  let res = await play(confirm, store.storyKey, store.storyFile, storyLng.value)
-  let newQuery = JSON.parse(JSON.stringify(route.query))
+  store.showPlayerDialog = false
+  if (!confirm) return
+  console.log(confirm);
+  let newQuery = JSON.parse(JSON.stringify({ ...route.query, lng: storyLng.value }))
   delete newQuery.id
-  router.replace({ query: newQuery })
-  if (!res) router.push({ name: 'info' })
+  router.push({name: 'chat-room',params:{ ...route.params}, query: {...newQuery,lng:storyLng.value} })
 }
 </script>
 
 <template>
-  <div
-    v-if="store.showPlayerDialog"
-    class="dialog-mask flex-center"
-    @click="playMomotalk(false)"
-  >
+  <div v-if="store.showPlayerDialog" class="dialog-mask flex-center" @click="playMomotalk(false)">
     <div class="dialog-box" @click.stop="">
       <div class="dialog-header">🎈 {{ $t('playerTitle') }}</div>
       <p class="dialog-content">{{ $t('playerContent') }}</p>
@@ -34,10 +30,7 @@ const playMomotalk = async (confirm: boolean) => {
             </td>
             <td>
               <select v-model="store.storyFile">
-                <option
-                  v-for="(momotalk, index) in Object.keys(store.storyList)"
-                  :key="index"
-                >
+                <option v-for="(momotalk, index) in Object.keys(store.storyList)" :key="index">
                   {{ momotalk }}
                 </option>
               </select>
@@ -49,10 +42,7 @@ const playMomotalk = async (confirm: boolean) => {
             </td>
             <td>
               <select v-model="storyLng">
-                <option
-                  v-for="(lng, index) in store.storyList[store.storyFile]"
-                  :key="index"
-                >
+                <option v-for="(lng, index) in store.storyList[store.storyFile]" :key="index">
                   {{ lng }}
                 </option>
               </select>

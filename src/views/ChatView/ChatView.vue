@@ -148,7 +148,8 @@ import { onMounted, ref, watch } from 'vue'
 import i18n from '@/locales/i18n'
 import { baseStudent } from '@/assets/utils/interface'
 import { stickers, stickers2, stickers3 } from '@/assets/utils/stickers'
-import { getMessage, getStickers, proxy } from '@/assets/utils/request'
+import { getStickers, proxy } from '@/assets/utils/request'
+import { play } from '@/assets/chatUtils/play'
 import { getRole } from '@/assets/chatUtils/role'
 import { readFile } from '@/assets/imgUtils/readFile'
 import { store } from '@/assets/storeUtils/store'
@@ -243,16 +244,8 @@ onMounted(async () => {
   var scroll_to_bottom = document.getElementById('talkList') as HTMLElement
   scroll_to_bottom.scrollTop = scroll_to_bottom.scrollHeight
   const route = useRoute()
-  let id = route.query.id as string
-  if (id) {
-    store.storyKey = id
-    store.storyList = (await getMessage(store.storyKey, 'index')) as {}
-    if (store.storyList) {
-      if (!Object.keys(store.storyList).find((ele) => ele === store.storyFile))
-        store.storyFile = Object.keys(store.storyList)[0]
-      store.showPlayerDialog = true
-    }
-  }
+  await play(confirm, store.storyKey, store.storyFile, route.query.lng)
+
   // 软换行
   var textarea = document.querySelector('textarea') as HTMLElement
   textarea.onkeydown = (e) => {

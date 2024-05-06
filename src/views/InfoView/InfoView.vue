@@ -1,8 +1,14 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import BirhdayIcon from '@/components/icons/IconBirhday.vue'
 import PlayIcon from '@/components/icons/IconPlay.vue'
 import { studentsDb } from '@/assets/storeUtils/students'
-import { computed } from 'vue';
+import { getMessage } from '@/assets/utils/request'
+import PlayerDialog from '@/components/PlayerWindow.vue'
+import { computed } from 'vue'
+import { store } from '@/assets/storeUtils/store'
+import { useRoute } from 'vue-router';
+const route = useRoute()
 const avatar = computed(() => {
   try {
     return studentsDb.currentInfo.Avatars[studentsDb.currentInfo.cnt]
@@ -10,14 +16,26 @@ const avatar = computed(() => {
     return ''
   }
 })
+onMounted(async () => {
+  store.storyKey = route.params.id
+  store.storyList = (await getMessage(route.params.id, 'index')) as {}
+  if (store.storyList) {
+    if (!Object.keys(store.storyList).find((ele) => ele === store.storyFile))
+      store.storyFile = Object.keys(store.storyList)[0]
+  }
+})
+function handleChat() {
+  store.showPlayerDialog = true
+
+}
 </script>
 
 <template>
-  <main class="student-info">
+  <div class="student-info">
     <div v-if="studentsDb.currentInfo">
-      <RouterLink class="student-info__play" :to="{ path: '/chat', query: { id: studentsDb.currentInfo.Id } }">
+      <a class="student-info__play" @click="handleChat">
         <PlayIcon class="icon play" />
-      </RouterLink>
+      </a>
       <div class="student-info__avatar">
         <img :src="avatar" />
       </div>
@@ -31,7 +49,8 @@ const avatar = computed(() => {
     <div v-else style="display: flex; align-items: center; justify-content: center">
       {{ $t('selectInfo') }}
     </div>
-  </main>
+    <PlayerDialog></PlayerDialog>
+  </div>
 </template>
 
 <style scoped lang="scss">
