@@ -19,7 +19,7 @@ const router = createRouter({
       path: '/chat/:id',
       name: 'chat-room',
       meta: {
-        layout: 'default'
+        layout: 'only-header'
       },
       component: Chat
     },

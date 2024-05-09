@@ -1,5 +1,5 @@
 .talk-wrapper {
-  height: 100%;
+  height: calc(100vh - 184px);
   width: calc((var(--view-width) - $sider-width) / 2);
 }
 
