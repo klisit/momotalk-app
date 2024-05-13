@@ -117,7 +117,7 @@ import { readFile } from '@/assets/imgUtils/readFile'
 import { store } from '@/assets/storeUtils/store'
 import { talkHistory } from '@/assets/storeUtils/talkHistory'
 import { saveEdit } from '@/assets/storeUtils/saveEdit'
-import { Talk } from '@/assets/utils/interface'
+import { Talk } from '../assets/utils/interface'
 
 export default {
   props: {

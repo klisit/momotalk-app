@@ -2,12 +2,12 @@
 import ListIcon from '../../components/icons/IconList.vue'
 import { getStudents, getSchaleSchoolIcon } from '../../assets/utils/request'
 // import i18n from '@/locales/i18n'
-import { baseStudent, studentInfo } from '@/assets/utils/interface'
 import { ref, onMounted, watch } from 'vue'
 import { store } from '@/assets/storeUtils/store'
 import { studentsDb } from '@/assets/storeUtils/students'
 import { talkHistory } from '@/assets/storeUtils/talkHistory'
 import { search } from '@/assets/utils/search'
+import { studentInfo, baseStudent } from '../../assets/utils/interface'
 const database: any = ref([])
 const dataDisplayIndex = ref<number>(0)
 const dataDisplay = ref<studentInfo[]>()
@@ -72,16 +72,16 @@ const selectAvatar = (item: studentInfo, index: number) => {
 }
 
 // languages
-const changeLanguage = async () => {
-  const languageList = i18n.global.availableLocales
-  const currentLngIdx = languageList.findIndex((ele) => ele === store.language)
-  store.language = languageList[(currentLngIdx + 1) % languageList.length]
-  i18n.global.locale = store.language as any
-  database.value = await getStudents(store.language)
-  dataDisplay.value = database.value[dataDisplayIndex.value]
-  store.setData()
-  deactiveStudent()
-}
+// const changeLanguage = async () => {
+//   const languageList = i18n.global.availableLocales
+//   const currentLngIdx = languageList.findIndex((ele: any) => ele === store.language)
+//   store.language = languageList[(currentLngIdx + 1) % languageList.length]
+//   i18n.global.locale = store.language as any
+//   database.value = await getStudents(store.language)
+//   dataDisplay.value = database.value[dataDisplayIndex.value]
+//   store.setData()
+//   deactiveStudent()
+// }
 
 // theme
 const changeTheme = () => {

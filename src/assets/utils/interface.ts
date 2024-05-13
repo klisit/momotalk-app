@@ -30,4 +30,4 @@ interface Talk extends baseStudent {
   flag: number
 }
 
-export { baseStudent, studentInfo, Talk }
+export type { baseStudent, studentInfo, Talk }

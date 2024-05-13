@@ -146,7 +146,6 @@ import { useRoute } from 'vue-router'
 import { onMounted, ref, watch } from 'vue'
 
 import i18n from '@/locales/i18n'
-import { baseStudent } from '@/assets/utils/interface'
 import { stickers, stickers2, stickers3 } from '@/assets/utils/stickers'
 import { getStickers, proxy } from '@/assets/utils/request'
 import { play } from '@/assets/chatUtils/play'
@@ -157,6 +156,7 @@ import { talkHistory } from '@/assets/storeUtils/talkHistory'
 import { selectList } from '@/assets/storeUtils/selectList'
 import { sendText, sendImage, sendSticker } from '@/assets/chatUtils/send'
 import { insertImage, insertSticker, insertText } from '@/assets/chatUtils/insert'
+import { baseStudent } from '../../assets/utils/interface'
 
 const props = defineProps(['student'])
 const emits = defineEmits(['deactive'])

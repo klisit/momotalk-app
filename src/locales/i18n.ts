@@ -1,4 +1,4 @@
-import { createI18n } from 'vue-i18n'
+import { createI18n, I18n } from 'vue-i18n'
 import i18nEn from './i18n-en'
 import i18nJp from './i18n-jp'
 import i18nTw from './i18n-tw'
@@ -13,7 +13,7 @@ const messages = {
   kr: i18nKr
 }
 
-const i18n = createI18n({
+const i18n: I18n = createI18n({
   locale: 'zh',
   fallbackLocale: 'en',
   messages,

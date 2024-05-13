@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
 import MomoIcon from '../components/icons/IconMomo.vue'
-const router = useRouter()
 </script>
 
 <template>

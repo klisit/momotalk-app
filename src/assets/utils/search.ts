@@ -9,10 +9,10 @@ const search = (data: studentInfo[], key: string, filter: string) => {
     key
       .toLowerCase()
       .trim()
-      .replaceAll('(', '\\(')
-      .replaceAll(')', '\\)')
-      .replaceAll('（', '\\(')
-      .replaceAll('）', '\\)')
+      .replace('(', '\\(')
+      .replace(')', '\\)')
+      .replace('（', '\\(')
+      .replace('）', '\\)')
   )
   const reg_school = new RegExp(filter)
 
